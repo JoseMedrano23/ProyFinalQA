@@ -910,10 +910,22 @@ const ProductsPage = () => {
                           </Box>
 
                           <Stack direction={{ xs: 'row', md: 'column' }} spacing={1} justifyContent="center">
-                            <IconButton onClick={() => toggleFavorite(product.id)} color={favorites.has(product.id) ? 'error' : 'default'}>
-                              {favorites.has(product.id) ? <Favorite /> : <FavoriteBorder />}
+                            <IconButton 
+                              onClick={() => toggleFavorite(product.id)} 
+                              sx={{
+                                '& .MuiSvgIcon-root': {
+                                  filter: favorites.has(product.id) 
+                                    ? 'drop-shadow(0 0 2px rgba(239, 68, 68, 0.5))' 
+                                    : 'drop-shadow(0 0 1px rgba(0, 0, 0, 0.3))',
+                                }
+                              }}
+                            >
+                              {favorites.has(product.id) 
+                                ? <Favorite sx={{ color: '#ef4444' }} /> 
+                                : <FavoriteBorder sx={{ color: '#6b7280' }} />
+                              }
                             </IconButton>
-
+                                
                             <Button
                               variant="contained"
                               startIcon={addingToCart.has(product.id) ? <CircularProgress size={20} /> : <ShoppingCart />}
